@@ -2,26 +2,30 @@
 Slash command creator for the discord.py The Guardians Bot.
 © by ElBe.
 
-Version: 0.1.0
+Version: 0.1.3
 '''
 
 #Imports
 import requests
+import functions
 
 #Variables
-url = "https://discord.com/api/v10/applications/<INSERT APPLICATION ID HERE>/commands"
-json = {
-    "name": "<COMMAND NAME>",
-    "type": 1,
-    "description": "<COMMAND DESCRIPTION>"
-}
+url = 'https://discord.com/api/v10/applications/' + functions.json_module.get_config('Config')['Application ID'] + '/commands'
 headers = {
-    "Authorization": "Bot <INSERT TOKEN HERE>"
+    'Authorization': 'Bot ' + functions.json_module.get_config('Config')['Token']
 }
 
-#Request
-try:
-    r = requests.post(url, headers=headers, json=json)
-    print('Command /' + str(json['name']) + ' was sucessfully created.')
-except Exception as e:
-    print('Error while trying to create the command /' + str(json['name']) + '.\n' + str(e))
+#Example Command
+json = {
+    'name': 'ping',
+    'type': 1,
+    'description': 'Shows you the ping of the bot.'
+}
+
+#Function
+def create_command(json):
+    try:
+        r = requests.post(url, headers=headers, json=json)
+        print('Command /' + str(json['name']) + ' was sucessfully created.')
+    except Exception as e:
+        print('Error while trying to create the command /' + str(json['name']) + '.\n' + str(e))
