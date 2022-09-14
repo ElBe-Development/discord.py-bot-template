@@ -1,0 +1,12 @@
+{
+    "Config": {
+        "Token": "<INSERT TOKEN HERE>",
+        "Version": "0.1.0 alpha",
+        "Version-Comment": "Started the project.",
+        "Credits": true
+    },
+    "Images": {
+        "Logo": "<INSERT LOGO URL HERE>"
+    },
+    "Commands": ["stop", "help", "info", "ping", "kick", "ban", "unban", "clear"]
+}
