@@ -10,7 +10,7 @@ This is the code for the discord bot of the 6b6t group The Guardians.
   - colorama
   - platform
   - psutil
-  More if needed.
+  - More if needed.
 5. Execute the `commands.py` file.
 6. Now you can run the `bot.py` file.
 
