@@ -228,4 +228,4 @@ class TheGuardiansBot(discord.Client):
 
 #Run
 client = TheGuardiansBot(intents = intents, max_messages=None)
-client.run(token)#, log_handler=None)
+client.run(token, log_handler=None)
