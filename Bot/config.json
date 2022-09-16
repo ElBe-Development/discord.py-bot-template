@@ -9,5 +9,5 @@
     "Images": {
         "Logo": "https://cdn.discordapp.com/icons/984315487271940157/a_36c71b77a6f24b6da1cade4b3c4c36a1.webp?size=96"
     },
-    "Commands": ["stop", "help", "info", "ping", "kick", "ban", "unban", "clear"]
+    "Commands": ["stop", "help", "info", "ping", "kick", "ban", "unban"]
 }
