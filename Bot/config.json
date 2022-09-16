@@ -2,8 +2,8 @@
     "Config": {
         "Token": "<INSERT TOKEN HERE>",
         "Application ID": "<INSERT APLLICATION ID HERE>",
-        "Version": "0.1.5 alpha",
-        "Version-Comment": "Added info, ping and help command.",
+        "Version": "0.1.6 alpha",
+        "Version-Comment": "Added kick, ban and unban command.",
         "Credits": true
     },
     "Images": {
