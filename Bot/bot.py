@@ -129,7 +129,7 @@ class TheGuardiansBot(discord.Client):
                 helpEmbed.set_footer(text='Bot made by ElBe for The Guardians.')
                 await interaction.response.send_message(embed=helpEmbed, ephemeral=True)
 
-            if command_name == ' kick':
+            if command_name == 'kick':
                 options = interaction.data['options']   
                 if interaction.user.guild_permissions.administrator:
                     member = options[0]['value']
