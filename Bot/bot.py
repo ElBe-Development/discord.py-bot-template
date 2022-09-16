@@ -2,7 +2,7 @@
 Bot from The Guardians.
 © by ElBe.
 
-Version: 0.1.5
+Version: 0.1.6
 '''
 
 #Imports
@@ -130,13 +130,64 @@ class TheGuardiansBot(discord.Client):
                 await interaction.response.send_message(embed=helpEmbed, ephemeral=True)
 
             if command_name == ' kick':
-                MISSING
+                options = interaction.data['options']   
+                if interaction.user.guild_permissions.administrator:
+                    member = options[0]['value']
+                    member = await interaction.guild.fetch_member(int(member))
+                    reason =  options[1]['value']
+                    if reason == None: reason = 'Kicked by @' + str(interaction.user) + ' with the /kick command.'
+
+                    await member.kick(reason=reason)
+                    
+                    kickEmbed = discord.Embed(title='Kick', description='Succesfully kicked <@!' + options[0]['value'] + '>!')
+                    kickEmbed.set_thumbnail(url=client.user.avatar.url)
+                    kickEmbed.set_footer(text='Bot made by ElBe for The Guardians.')
+                    await interaction.response.send_message(embed=kickEmbed, ephemeral=True)
+                else:
+                    noPermissionsEmbed = discord.Embed(title='Missing permissions', description='You don\'t have permissions to do that.', color=discord.Color.red())
+                    noPermissionsEmbed.set_thumbnail(url=client.user.avatar.url)
+                    noPermissionsEmbed.set_footer(text='Bot made by ElBe for The Guardians.')
+                    await interaction.response.send_message(embed=noPermissionsEmbed, ephemeral=True)
 
             if command_name == 'ban':
-                MISSING
+                options = interaction.data['options']   
+                if interaction.user.guild_permissions.administrator:
+                    member = options[0]['value']
+                    member = await interaction.guild.fetch_member(int(member))
+                    reason =  options[1]['value']
+                    if reason == None: reason = 'Banned by @' + str(interaction.user) + ' with the /ban command.'
+
+                    await member.ban(reason=reason)
+                    
+                    banEmbed = discord.Embed(title='Ban', description='Succesfully banned <@!' + options[0]['value'] + '>!')
+                    banEmbed.set_thumbnail(url=client.user.avatar.url)
+                    banEmbed.set_footer(text='Bot made by ElBe for The Guardians.')
+                    await interaction.response.send_message(embed=banEmbed, ephemeral=True)
+                else:
+                    noPermissionsEmbed = discord.Embed(title='Missing permissions', description='You don\'t have permissions to do that.', color=discord.Color.red())
+                    noPermissionsEmbed.set_thumbnail(url=client.user.avatar.url)
+                    noPermissionsEmbed.set_footer(text='Bot made by ElBe for The Guardians.')
+                    await interaction.response.send_message(embed=noPermissionsEmbed, ephemeral=True)
 
             if command_name == 'unban':
-                MISSING
+                options = interaction.data['options']   
+                if interaction.user.guild_permissions.administrator:
+                    member = options[0]['value']
+                    member = await interaction.guild.fetch_member(int(member))
+                    reason =  options[1]['value']
+                    if reason == None: reason = 'Unbanned by @' + str(interaction.user) + ' with the /unban command.'
+
+                    await member.unban(reason=reason)
+                    
+                    unbanEmbed = discord.Embed(title='Unban', description='Succesfully unbanned <@!' + options[0]['value'] + '>!')
+                    unbanEmbed.set_thumbnail(url=client.user.avatar.url)
+                    unbanEmbed.set_footer(text='Bot made by ElBe for The Guardians.')
+                    await interaction.response.send_message(embed=unbanEmbed, ephemeral=True)
+                else:
+                    noPermissionsEmbed = discord.Embed(title='Missing permissions', description='You don\'t have permissions to do that.', color=discord.Color.red())
+                    noPermissionsEmbed.set_thumbnail(url=client.user.avatar.url)
+                    noPermissionsEmbed.set_footer(text='Bot made by ElBe for The Guardians.')
+                    await interaction.response.send_message(embed=noPermissionsEmbed, ephemeral=True)
 
     async def on_member_join(self, member):
         async def log(text: str):
@@ -174,7 +225,6 @@ class TheGuardiansBot(discord.Client):
             print(functions.console.error(str(text)))
 
         await error('Bot disconected from discord.')
-
 
 #Run
 client = TheGuardiansBot(intents = intents, max_messages=None)
