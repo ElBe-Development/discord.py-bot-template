@@ -2,21 +2,18 @@
 Bot from The Guardians.
 © by ElBe.
 
-Version: 0.1.6
+Version: 0.1.7
 '''
 
 #Imports
 import discord
-from discord import ui          
 from discord import utils
-from discord import app_commands
 import asyncio
 import datetime
 import time
 import logging
 import platform
 import psutil
-from random import randint, choice
 
 #Bot modules
 import functions
@@ -211,10 +208,10 @@ class TheGuardiansBot(discord.Client):
 
         if not member == client.user:
             channel = discord.utils.get(member.guild.text_channels, name='bye')
-            joinEmbed = discord.Embed(title='Goodbye!', description='<@!' + str(member.id) + f'> left {member.guild.name}.')
-            joinEmbed.set_thumbnail(url=member.avatar.url)
-            joinEmbed.set_footer(text='Bot made by ElBe for The Guardians.')
-            await channel.send(embed=joinEmbed)
+            leaveEmbed = discord.Embed(title='Goodbye!', description='<@!' + str(member.id) + f'> left {member.guild.name}.')
+            leaveEmbed.set_thumbnail(url=member.avatar.url)
+            leaveEmbed.set_footer(text='Bot made by ElBe for The Guardians.')
+            await channel.send(embed=leaveEmbed)
             await log('@' + str(member) + ' left ' + str(member.guild.name) + '.')
 
     async def on_disconnect(self):
