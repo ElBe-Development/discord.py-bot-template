@@ -23,7 +23,7 @@ import functions
 
 #Start
 print('Discord.py The Guardians Bot')
-print('-------------------')
+print('----------------------------')
 print('© by ElBe 2022.')
 print('')
 print('Start Informations')
