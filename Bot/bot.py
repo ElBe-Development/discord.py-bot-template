@@ -60,11 +60,11 @@ class TheGuardiansBot(discord.Client):
     '''Bot.'''
 
     async def on_connect(self):
-        logging.info(str(datetime.datetime.now()) + 'Bot connected to the Discord API.')
+        logging.info(str(datetime.datetime.now()) + ' Bot connected to the Discord API.')
         print(functions.console.info('Bot connected to the Discord API.'))
 
     async def on_ready(self):
-        logging.info(str(datetime.datetime.now()) + 'Bot logged in as ' + client.user.name + '.')
+        logging.info(str(datetime.datetime.now()) + ' Bot logged in as ' + client.user.name + '.')
         print(functions.console.info('Bot logged in as ' + client.user.name + '.'))
         print('')
         print('Log (Consolebased)')
@@ -93,7 +93,6 @@ class TheGuardiansBot(discord.Client):
 
         if interaction.type == discord.InteractionType.application_command:
             command_name = str(interaction.data['name'])
-            print(str(interaction.data)) #DEBUG
             await log('Command /' + command_name + ' was used by @' + str(interaction.user) + '.')
 
             if command_name == 'ping':
@@ -173,11 +172,11 @@ class TheGuardiansBot(discord.Client):
                 options = interaction.data['options']   
                 if interaction.user.guild_permissions.administrator:
                     member = options[0]['value']
-                    member = await interaction.guild.fetch_member(int(member))
+                    member = await client.fetch_user(int(member))
                     reason =  options[1]['value']
                     if reason == None: reason = 'Unbanned by @' + str(interaction.user) + ' with the /unban command.'
 
-                    await member.unban(reason=reason)
+                    await interaction.guild.unban(member, reason=reason)
                     
                     unbanEmbed = discord.Embed(title='Unban', description='Succesfully unbanned <@!' + options[0]['value'] + '>!')
                     unbanEmbed.set_thumbnail(url=client.user.avatar.url)
@@ -195,7 +194,7 @@ class TheGuardiansBot(discord.Client):
             logging.info(str(datetime.datetime.now().strftime('%d.%m.%Y %T')) + ' -- ' + str(text))
             print(functions.console.log(str(text)))
 
-        if not str(member) == client.user:
+        if not member == client.user:
             channel = discord.utils.get(member.guild.text_channels, name='hi')
             joinEmbed = discord.Embed(title='Welcome!', description='Hello  <@!' + str(member.id) + f'>! \nThank you for joining {member.guild.name}!')
             joinEmbed.set_thumbnail(url=member.avatar.url)
@@ -210,7 +209,7 @@ class TheGuardiansBot(discord.Client):
             logging.info(str(datetime.datetime.now().strftime('%d.%m.%Y %T')) + ' -- ' + str(text))
             print(functions.console.log(str(text)))
 
-        if not str(member) == client.user:
+        if not member == client.user:
             channel = discord.utils.get(member.guild.text_channels, name='bye')
             joinEmbed = discord.Embed(title='Goodbye!', description='<@!' + str(member.id) + f'> left {member.guild.name}.')
             joinEmbed.set_thumbnail(url=member.avatar.url)
