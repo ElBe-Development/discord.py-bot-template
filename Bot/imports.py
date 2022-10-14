@@ -3,22 +3,26 @@ Module importer for the discord.py Bot.
 
 © by ElBe.
 
-Version: 0.1.0
+Version: 0.1.2
 
-NOTE: Only execute once.
+NOTE: Only execute once. Only works on windows (for now).
 '''
 
 #Imports
-import sys
+import os
 import subprocess
 
-#Main
-subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'discord.py'])
-subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'asyncio'])
-subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'datetime'])
-subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'time'])
-subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'logging'])
-subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'platform'])
-subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'psutil'])
+#Executable
+executable = os.path.expanduser('~') + r'\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\\python.exe'
 
-print('Packages installed successfully!')
+#Main
+try:
+    subprocess.check_call([executable, '-m', 'pip', 'install', 'discord.py'])
+    subprocess.check_call([executable, '-m', 'pip', 'install', 'asyncio'])
+    subprocess.check_call([executable, '-m', 'pip', 'install', 'datetime'])
+    subprocess.check_call([executable, '-m', 'pip', 'install', 'psutil'])
+
+    print('Packages installed successfully!')
+
+except subprocess.CalledProcessError:
+    print('Error while trying to install the packages.')
