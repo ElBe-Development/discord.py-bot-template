@@ -1,13 +1,18 @@
 {
     "Config": {
-        "Token": "<INSERT TOKEN HERE>",
-        "Application ID": "<INSERT APPLICATION ID HERE>",
-        "Version": "0.1.7 final",
-        "Version-Comment": "Fixed unban command and released the bot.",
+        "Token": "<Insert token here>",
+        "Application ID": "<insert application id here>",
+        "Version": "0.1.8 beta",
+        "Version-Comment": "Added more config options.",
+        "Footer":"Bot made by ElBe.",
         "Credits": true
     },
+    "Channels": {
+        "Welcome": "<Insert welcome channel name here>",
+        "Goodbye": "<Insert goodbye channel name here>"
+    },
     "Images": {
-        "Logo": "https://cdn.discordapp.com/icons/984315487271940157/a_36c71b77a6f24b6da1cade4b3c4c36a1.webp?size=96"
+        "Logo": "<Insert logo here>"
     },
     "Commands": ["stop", "help", "info", "ping", "kick", "ban", "unban"]
 }
