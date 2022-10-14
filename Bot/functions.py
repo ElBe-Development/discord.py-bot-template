@@ -1,8 +1,8 @@
 '''
-Functions for the discord.py The Guardians Bot.
+Functions for the discord.py Bot.
 © by ElBe.
 
-Version: 0.1.0
+Version: 0.1.1
 '''
 
 #Imports
