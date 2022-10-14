@@ -1,9 +1,9 @@
 '''
-Command creator for the The Guardians Discord Bot.
+Command creator for the discord.py Bot.
 
 © by ElBe.
 
-Version: 0.1.3
+Version: 0.1.4
 
 NOTE: Only execute once.
 '''
