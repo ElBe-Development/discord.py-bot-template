@@ -4,7 +4,7 @@
         "Application ID": "<Insert application id here>",
         "Version": "0.1.9.1 beta",
         "Version-Comment": "Added command manager and stop command.",
-        "Footer":"Bot made by ElBe.",
+        "Footer": "Bot made by ElBe.",
         "Credits": true
     },
     "Channels": {
