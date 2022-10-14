@@ -2,9 +2,9 @@
 This is a discord.py bot template.
 
 ## How to use the template
-1. Download the code from the packages.
+1. Download the code from the releases tab.
 2. Fill out the `config.json` file.
-3. Run the `imports.py` file if you are on windows. Support for more operating systems will be added later.
+3. Run `pip install -r requirements.txt` in your console (the folder has to be open in you console).
 4. Execute the `commands.py` file.
 5. Execute the `bot.py` file.
 
