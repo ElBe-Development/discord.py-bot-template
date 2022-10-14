@@ -1,8 +1,8 @@
 '''
-Bot from The Guardians.
+Discord bot template.
 © by ElBe.
 
-Version: 0.1.7
+Version: 0.1.8
 '''
 
 #Imports
@@ -19,7 +19,7 @@ import psutil
 import functions
 
 #Start
-print('Discord.py The Guardians Bot')
+print('Discord.py Bot')
 print('----------------------------')
 print('© by ElBe 2022.')
 print('')
@@ -45,6 +45,9 @@ starttime = time.time()
 token = functions.json_module.get_config('Config')['Token']
 version = functions.json_module.get_config('Config')['Version']
 credits = functions.json_module.get_config('Config')['Credits']
+footer = functions.json_module.get_config('Config')['footer']
+welcomeChannel = functions.json_module.get_config('Channels')['Welcome']
+goodbyeChannel = functions.json_module.get_config('Channels')['Goodbye']
 icon = functions.json_module.get_config('Images')['Logo']
 commands = functions.json_module.get_config('Commands')
 
@@ -53,7 +56,7 @@ logging.basicConfig(filename='log.txt', level=logging.INFO)
 intents = discord.Intents.all()
 
 #Main
-class TheGuardiansBot(discord.Client):
+class Bot(discord.Client):
     '''Bot.'''
 
     async def on_connect(self):
@@ -69,8 +72,6 @@ class TheGuardiansBot(discord.Client):
 
         while True:
             await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f'/help for help.'))
-            await asyncio.sleep(10)
-            await client.change_presence(activity=discord.Game(name=' with The Guardians on 6b6t.'))
             await asyncio.sleep(10)
             await client.change_presence(activity=discord.Game(name=f'Version {version}'))
             await asyncio.sleep(10)
@@ -96,7 +97,7 @@ class TheGuardiansBot(discord.Client):
                 pingEmbed = discord.Embed(title='Ping', description='Ping of the bot in ms.')
                 pingEmbed.add_field(name='Latency: ', value=str(round(client.latency * 1000)) + ' ms', inline=False)
                 pingEmbed.set_thumbnail(url=client.user.avatar.url)
-                pingEmbed.set_footer(text='Bot made by ElBe for The Guardians.')
+                pingEmbed.set_footer(text=footer)
                 await interaction.response.send_message(embed=pingEmbed, ephemeral=True)
 
             if command_name == 'info':
@@ -105,7 +106,7 @@ class TheGuardiansBot(discord.Client):
                 infoEmbed.add_field(name='CPU usage: ', value=str(psutil.cpu_percent(2)) + '%', inline=False)
                 infoEmbed.add_field(name='Uptime: ', value=str(datetime.timedelta(seconds=int(round(time.time()-starttime)))), inline=False)
                 infoEmbed.set_thumbnail(url=client.user.avatar.url)
-                infoEmbed.set_footer(text='Bot made by ElBe for The Guardians.')
+                infoEmbed.set_footer(text=footer)
                 await interaction.response.send_message(embed=infoEmbed, ephemeral=True)
 
             if command_name == 'stop':
@@ -121,8 +122,8 @@ class TheGuardiansBot(discord.Client):
                 helpEmbed.add_field(name='Ban', value='Bans a member from the server.', inline=True)
                 helpEmbed.add_field(name='Unban', value='Unbans a member from the server.', inline=True)
                 helpEmbed.add_field(name='more', value='For more help write a direct message to <@!745695237380243457>.', inline=False)
-                helpEmbed.set_thumbnail(url=client.user.avatar.url)
-                helpEmbed.set_footer(text='Bot made by ElBe for The Guardians.')
+                helpEmbed.set_thumbnail(url=client.user.avatar.url) 
+                helpEmbed.set_footer(text=footer)
                 await interaction.response.send_message(embed=helpEmbed, ephemeral=True)
 
             if command_name == 'kick':
@@ -137,12 +138,12 @@ class TheGuardiansBot(discord.Client):
                     
                     kickEmbed = discord.Embed(title='Kick', description='Succesfully kicked <@!' + options[0]['value'] + '>!')
                     kickEmbed.set_thumbnail(url=client.user.avatar.url)
-                    kickEmbed.set_footer(text='Bot made by ElBe for The Guardians.')
+                    kickEmbed.set_footer(text=footer)
                     await interaction.response.send_message(embed=kickEmbed, ephemeral=True)
                 else:
                     noPermissionsEmbed = discord.Embed(title='Missing permissions', description='You don\'t have permissions to do that.', color=discord.Color.red())
                     noPermissionsEmbed.set_thumbnail(url=client.user.avatar.url)
-                    noPermissionsEmbed.set_footer(text='Bot made by ElBe for The Guardians.')
+                    noPermissionsEmbed.set_footer(text=footer)
                     await interaction.response.send_message(embed=noPermissionsEmbed, ephemeral=True)
 
             if command_name == 'ban':
@@ -157,12 +158,12 @@ class TheGuardiansBot(discord.Client):
                     
                     banEmbed = discord.Embed(title='Ban', description='Succesfully banned <@!' + options[0]['value'] + '>!')
                     banEmbed.set_thumbnail(url=client.user.avatar.url)
-                    banEmbed.set_footer(text='Bot made by ElBe for The Guardians.')
+                    banEmbed.set_footer(text=footer)
                     await interaction.response.send_message(embed=banEmbed, ephemeral=True)
                 else:
                     noPermissionsEmbed = discord.Embed(title='Missing permissions', description='You don\'t have permissions to do that.', color=discord.Color.red())
                     noPermissionsEmbed.set_thumbnail(url=client.user.avatar.url)
-                    noPermissionsEmbed.set_footer(text='Bot made by ElBe for The Guardians.')
+                    noPermissionsEmbed.set_footer(text=footer)
                     await interaction.response.send_message(embed=noPermissionsEmbed, ephemeral=True)
 
             if command_name == 'unban':
@@ -177,12 +178,12 @@ class TheGuardiansBot(discord.Client):
                     
                     unbanEmbed = discord.Embed(title='Unban', description='Succesfully unbanned <@!' + options[0]['value'] + '>!')
                     unbanEmbed.set_thumbnail(url=client.user.avatar.url)
-                    unbanEmbed.set_footer(text='Bot made by ElBe for The Guardians.')
+                    unbanEmbed.set_footer(text=footer)
                     await interaction.response.send_message(embed=unbanEmbed, ephemeral=True)
                 else:
                     noPermissionsEmbed = discord.Embed(title='Missing permissions', description='You don\'t have permissions to do that.', color=discord.Color.red())
                     noPermissionsEmbed.set_thumbnail(url=client.user.avatar.url)
-                    noPermissionsEmbed.set_footer(text='Bot made by ElBe for The Guardians.')
+                    noPermissionsEmbed.set_footer(text=footer)
                     await interaction.response.send_message(embed=noPermissionsEmbed, ephemeral=True)
 
     async def on_member_join(self, member):
@@ -192,10 +193,10 @@ class TheGuardiansBot(discord.Client):
             print(functions.console.log(str(text)))
 
         if not member == client.user:
-            channel = discord.utils.get(member.guild.text_channels, name='hi')
+            channel = discord.utils.get(member.guild.text_channels, name=welcomeChannel)
             joinEmbed = discord.Embed(title='Welcome!', description='Hello  <@!' + str(member.id) + f'>! \nThank you for joining {member.guild.name}!')
             joinEmbed.set_thumbnail(url=member.avatar.url)
-            joinEmbed.set_footer(text='Bot made by ElBe for The Guardians.')
+            joinEmbed.set_footer(text=footer)
             await channel.send(embed=joinEmbed)
             await member.add_roles(discord.utils.get(member.guild.roles, name='member'))
             await log('@' + str(member) + ' joined to ' + str(member.guild.name) + '.')
@@ -207,10 +208,10 @@ class TheGuardiansBot(discord.Client):
             print(functions.console.log(str(text)))
 
         if not member == client.user:
-            channel = discord.utils.get(member.guild.text_channels, name='bye')
+            channel = discord.utils.get(member.guild.text_channels, name=goodbyeChannel)
             leaveEmbed = discord.Embed(title='Goodbye!', description='<@!' + str(member.id) + f'> left {member.guild.name}.')
             leaveEmbed.set_thumbnail(url=member.avatar.url)
-            leaveEmbed.set_footer(text='Bot made by ElBe for The Guardians.')
+            leaveEmbed.set_footer(text=footer)
             await channel.send(embed=leaveEmbed)
             await log('@' + str(member) + ' left ' + str(member.guild.name) + '.')
 
@@ -223,5 +224,5 @@ class TheGuardiansBot(discord.Client):
         await error('Bot disconected from discord.')
 
 #Run
-client = TheGuardiansBot(intents = intents, max_messages=None)
+client = Bot(intents = intents, max_messages=None)
 client.run(token, log_handler=None)
