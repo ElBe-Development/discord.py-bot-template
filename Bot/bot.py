@@ -2,7 +2,7 @@
 Discord bot template.
 © by ElBe.
 
-Version: 0.1.8
+Version: 0.1.9
 '''
 
 #Imports
@@ -45,10 +45,9 @@ starttime = time.time()
 token = functions.json_module.get_config('Config')['Token']
 version = functions.json_module.get_config('Config')['Version']
 credits = functions.json_module.get_config('Config')['Credits']
-footer = functions.json_module.get_config('Config')['footer']
+footer = functions.json_module.get_config('Config')['Footer']
 welcomeChannel = functions.json_module.get_config('Channels')['Welcome']
 goodbyeChannel = functions.json_module.get_config('Channels')['Goodbye']
-icon = functions.json_module.get_config('Images')['Logo']
 commands = functions.json_module.get_config('Commands')
 
 #Setup
@@ -93,14 +92,19 @@ class Bot(discord.Client):
             command_name = str(interaction.data['name'])
             await log('Command /' + command_name + ' was used by @' + str(interaction.user) + '.')
 
-            if command_name == 'ping':
+            if command_name == 'ping' and commands['ping']:
                 pingEmbed = discord.Embed(title='Ping', description='Ping of the bot in ms.')
                 pingEmbed.add_field(name='Latency: ', value=str(round(client.latency * 1000)) + ' ms', inline=False)
                 pingEmbed.set_thumbnail(url=client.user.avatar.url)
                 pingEmbed.set_footer(text=footer)
                 await interaction.response.send_message(embed=pingEmbed, ephemeral=True)
+            elif command_name == 'ping' and not commands['ping']:
+                commandDisabledEmbed = discord.Embed(title='Command disabled', description='This command was disabled in the bot config file. Ask a member with access to the bot to enable this command.')
+                commandDisabledEmbed.set_thumbnail(url=client.user.avatar.url)
+                commandDisabledEmbed.set_footer(text=footer)
+                await interaction.response.send_message(embed=commandDisabledEmbed, ephemeral=True)     
 
-            if command_name == 'info':
+            if command_name == 'info' and commands['info']:
                 infoEmbed = discord.Embed(title='Information', description='Informations about the bot.')
                 infoEmbed.add_field(name='Running on: ', value=str(platform.system()) + ' ' +  str(platform.release()), inline=False)
                 infoEmbed.add_field(name='CPU usage: ', value=str(psutil.cpu_percent(2)) + '%', inline=False)
@@ -108,12 +112,29 @@ class Bot(discord.Client):
                 infoEmbed.set_thumbnail(url=client.user.avatar.url)
                 infoEmbed.set_footer(text=footer)
                 await interaction.response.send_message(embed=infoEmbed, ephemeral=True)
+            elif command_name == 'info' and not commands['info']:
+                commandDisabledEmbed = discord.Embed(title='Command disabled', description='This command was disabled in the bot config file. Ask a member with access to the bot to enable this command.')
+                commandDisabledEmbed.set_thumbnail(url=client.user.avatar.url)
+                commandDisabledEmbed.set_footer(text=footer)
+                await interaction.response.send_message(embed=commandDisabledEmbed, ephemeral=True)     
 
-            if command_name == 'stop':
-                await log('Client stoped.')
-                exit()
+            if command_name == 'stop' and commands['stop']:
+                if interaction.user.guild_permissions.administrator:
+                    await log('Client stoped.')
+                    exit()
+                else:
+                    noPermissionsEmbed = discord.Embed(title='Missing permissions', description='You don\'t have permissions to do that.', color=discord.Color.red())
+                    noPermissionsEmbed.set_thumbnail(url=client.user.avatar.url)
+                    noPermissionsEmbed.set_footer(text=footer)
+                    await interaction.response.send_message(embed=noPermissionsEmbed, ephemeral=True)
+            elif command_name == 'stop' and not commands['stop']:
+                commandDisabledEmbed = discord.Embed(title='Command disabled', description='This command was disabled in the bot config file. Ask a member with access to the bot to enable this command.')
+                commandDisabledEmbed.set_thumbnail(url=client.user.avatar.url)
+                commandDisabledEmbed.set_footer(text=footer)
+                await interaction.response.send_message(embed=commandDisabledEmbed, ephemeral=True)     
+
             
-            if command_name == 'help':
+            if command_name == 'help' and commands['help']:
                 helpEmbed = discord.Embed(title='Help', description='Help for commands and the usage of the bot.')
                 helpEmbed.add_field(name='Ping', value='Shows the ping of the bot in ms.', inline=True)
                 helpEmbed.add_field(name='Info', value='Shows information about the bot.', inline=True)
@@ -126,7 +147,7 @@ class Bot(discord.Client):
                 helpEmbed.set_footer(text=footer)
                 await interaction.response.send_message(embed=helpEmbed, ephemeral=True)
 
-            if command_name == 'kick':
+            if command_name == 'kick' and commands['kick']:
                 options = interaction.data['options']   
                 if interaction.user.guild_permissions.administrator:
                     member = options[0]['value']
@@ -145,8 +166,13 @@ class Bot(discord.Client):
                     noPermissionsEmbed.set_thumbnail(url=client.user.avatar.url)
                     noPermissionsEmbed.set_footer(text=footer)
                     await interaction.response.send_message(embed=noPermissionsEmbed, ephemeral=True)
+            elif command_name == 'kick' and not commands['kick']:
+                commandDisabledEmbed = discord.Embed(title='Command disabled', description='This command was disabled in the bot config file. Ask a member with access to the bot to enable this command.')
+                commandDisabledEmbed.set_thumbnail(url=client.user.avatar.url)
+                commandDisabledEmbed.set_footer(text=footer)
+                await interaction.response.send_message(embed=commandDisabledEmbed, ephemeral=True)     
 
-            if command_name == 'ban':
+            if command_name == 'ban' and commands['ban']:
                 options = interaction.data['options']   
                 if interaction.user.guild_permissions.administrator:
                     member = options[0]['value']
@@ -165,8 +191,13 @@ class Bot(discord.Client):
                     noPermissionsEmbed.set_thumbnail(url=client.user.avatar.url)
                     noPermissionsEmbed.set_footer(text=footer)
                     await interaction.response.send_message(embed=noPermissionsEmbed, ephemeral=True)
+            elif command_name == 'ban' and not commands['ban']:
+                commandDisabledEmbed = discord.Embed(title='Command disabled', description='This command was disabled in the bot config file. Ask a member with access to the bot to enable this command.')
+                commandDisabledEmbed.set_thumbnail(url=client.user.avatar.url)
+                commandDisabledEmbed.set_footer(text=footer)
+                await interaction.response.send_message(embed=commandDisabledEmbed, ephemeral=True)     
 
-            if command_name == 'unban':
+            if command_name == 'unban' and commands['unban']:
                 options = interaction.data['options']   
                 if interaction.user.guild_permissions.administrator:
                     member = options[0]['value']
@@ -185,6 +216,11 @@ class Bot(discord.Client):
                     noPermissionsEmbed.set_thumbnail(url=client.user.avatar.url)
                     noPermissionsEmbed.set_footer(text=footer)
                     await interaction.response.send_message(embed=noPermissionsEmbed, ephemeral=True)
+            elif command_name == 'unban' and not commands['unban']:
+                commandDisabledEmbed = discord.Embed(title='Command disabled', description='This command was disabled in the bot config file. Ask a member with access to the bot to enable this command.')
+                commandDisabledEmbed.set_thumbnail(url=client.user.avatar.url)
+                commandDisabledEmbed.set_footer(text=footer)
+                await interaction.response.send_message(embed=commandDisabledEmbed, ephemeral=True)     
 
     async def on_member_join(self, member):
         async def log(text: str):
