@@ -1,8 +1,8 @@
 '''
-Slash command creator for the discord.py The Guardians Bot.
+Slash command creator for the discord.py Bot.
 © by ElBe.
 
-Version: 0.1.3
+Version: 0.1.4
 '''
 
 #Imports
@@ -10,9 +10,9 @@ import requests
 import functions
 
 #Variables
-url = 'https://discord.com/api/v10/applications/' + functions.json_module.get_config('Config')['Application ID'] + '/commands'
+url = 'https://discord.com/api/v10/applications/' + str(functions.json_module.get_config('Config')['Application ID']) + '/commands'
 headers = {
-    'Authorization': 'Bot ' + functions.json_module.get_config('Config')['Token']
+    'Authorization': 'Bot ' + str(functions.json_module.get_config('Config')['Token'])
 }
 
 #Example Command
