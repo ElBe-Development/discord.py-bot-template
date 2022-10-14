@@ -1,9 +1,9 @@
 {
     "Config": {
-        "Token": "<Insert token here>",
-        "Application ID": "<insert application id here>",
-        "Version": "0.1.8 beta",
-        "Version-Comment": "Added more config options.",
+        "Token": "<Insert bot token here>",
+        "Application ID": "<Insert application id here>",
+        "Version": "0.1.9.1 beta",
+        "Version-Comment": "Added command manager and stop command.",
         "Footer":"Bot made by ElBe.",
         "Credits": true
     },
@@ -11,8 +11,13 @@
         "Welcome": "<Insert welcome channel name here>",
         "Goodbye": "<Insert goodbye channel name here>"
     },
-    "Images": {
-        "Logo": "<Insert logo here>"
-    },
-    "Commands": ["stop", "help", "info", "ping", "kick", "ban", "unban"]
+    "Commands": {
+        "stop": true,
+        "help": true,
+        "info": true,
+        "ping": true,
+        "kick": true,
+        "ban": true,
+        "unban": true
+    }
 }
