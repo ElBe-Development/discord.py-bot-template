@@ -3,13 +3,21 @@ Command creator for the discord.py Bot.
 
 © by ElBe.
 
-Version: 0.1.4
+Version: 0.1.5
 
 NOTE: Only execute once.
 '''
 
 #Imports
 import command_creator
+
+#Stop command
+json = {
+    'name': 'stop',
+    'type': 1,
+    'description': 'Stops the bot.'
+}
+command_creator.create_command(json)
 
 #Help command
 json = {
