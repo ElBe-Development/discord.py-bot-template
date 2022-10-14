@@ -1,17 +1,11 @@
 # Discord Bot
-This is the code for the discord bot of the 6b6t group The Guardians.
+This is a discord.py bot template.
 
-## How to use the code
-1. Download the files from the bot folder.
-2. Insert your discord bot token in the `config.json` file.
-3. Insert your discord application id in the `config.json` file.
-4. Install this libarys:
-  - discord.py
-  - colorama
-  - platform
-  - psutil
-  - More if needed.
-5. Execute the `commands.py` file.
-6. Now you can run the `bot.py` file.
+## How to use the template
+1. Download the code from the packages.
+2. Fill out the `config.json` file.
+3. Run the `imports.bat` file if you are on windows. Support for more operating systems will be added later.
+4. Execute the `commands.py` file.
+5. Execute the `bot.py` file.
 
 You should already have the discord bot on your server. It needs administrator and command permissions.
