@@ -1,7 +1,7 @@
 # Discord Bot
 This is the code for the discord bot of the 6b6t group The Guardians.
 
-## How to ue the code
+## How to use the code
 1. Download the files from the bot folder.
 2. Insert your discord bot token in the `config.json` file.
 3. Insert your discord application id in the `config.json` file.
