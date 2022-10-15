@@ -57,7 +57,7 @@ logging.basicConfig(filename='log.txt', level=logging.INFO)
 intents = discord.Intents.all()
 
 #Create commands
-if bot_functions.json_module.get_config('Created', 'commands.json') == 0:
+if bot_functions.json_module.get_config('Created', 'command.json') == 0:
     command.run()
 
 #Main
