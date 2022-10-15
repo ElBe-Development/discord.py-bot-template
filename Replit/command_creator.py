@@ -2,7 +2,7 @@
 Slash command creator for the discord.py Bot.
 © by ElBe.
 
-Version: 0.1.4
+Version: 0.1.5
 '''
 
 #Imports
