@@ -9,3 +9,6 @@ This is a discord.py bot template.
 5. Execute the `bot.py` file.
 
 You should already have the discord bot on your server. It needs administrator and command permissions.
+
+## Replit
+### :x: The replit port won't work. I will not work on this for now.
