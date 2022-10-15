@@ -2,10 +2,11 @@
 Discord bot template.
 © by ElBe.
 
-Version: 0.1.9-R
+Version: 0.1.9.1-R
 '''
 
 #Imports
+import os
 import discord
 from discord import utils
 import asyncio
@@ -17,6 +18,7 @@ import psutil
 
 #Bot modules
 import bot_functions
+import command
 
 #Start
 print('Discord.py Bot')
@@ -42,7 +44,7 @@ MISSING = utils.MISSING
 starttime = time.time()
 
 #JSON data
-token = bot_functions.json_module.get_config('Config')['Token']
+token = str(os.environ['token'])
 version = bot_functions.json_module.get_config('Config')['Version']
 credits = bot_functions.json_module.get_config('Config')['Credits']
 footer = bot_functions.json_module.get_config('Config')['Footer']
@@ -53,6 +55,10 @@ commands = bot_functions.json_module.get_config('Commands')
 #Setup
 logging.basicConfig(filename='log.txt', level=logging.INFO)
 intents = discord.Intents.all()
+
+#Create commands
+if bot_functions.json_module.get_config('Created', 'commands.json') == 0:
+    command.run()
 
 #Main
 class Bot(discord.Client):
