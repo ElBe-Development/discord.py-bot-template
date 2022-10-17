@@ -1,11 +1,11 @@
 {
     "Config": {
-        "Token": "<Insert bot token here>",
+        "Token": "<Insert token here>",
         "Application ID": "<Insert application id here>",
-        "Version": "0.1.9.1 final",
-        "Version-Comment": "Added command manager and stop command.",
-        "Footer": "Bot made by ElBe.",
-        "Credits": true
+        "Version": "0.1.9.2 final",
+        "Version-Comment": "Added error handling.",
+        "Footer": "Made by ElBe.",
+        "Credits": false
     },
     "Channels": {
         "Welcome": "<Insert welcome channel name here>",
