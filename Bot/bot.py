@@ -17,7 +17,7 @@ import psutil
 
 #Bot modules
 import functions
-
+import commands
 #Start
 print('Discord.py Bot')
 print('----------------------------')
@@ -42,17 +42,27 @@ MISSING = utils.MISSING
 starttime = time.time()
 
 #JSON data
-token = functions.json_module.get_config('Config')['Token']
-version = functions.json_module.get_config('Config')['Version']
-credits = functions.json_module.get_config('Config')['Credits']
-footer = functions.json_module.get_config('Config')['Footer']
-welcomeChannel = functions.json_module.get_config('Channels')['Welcome']
-goodbyeChannel = functions.json_module.get_config('Channels')['Goodbye']
-commands = functions.json_module.get_config('Commands')
+try:
+    token = functions.json_module.get_config('Config')['Token']
+    version = functions.json_module.get_config('Config')['Version']
+    credits = functions.json_module.get_config('Config')['Credits']
+    footer = functions.json_module.get_config('Config')['Footer']
+    welcomeChannel = functions.json_module.get_config('Channels')['Welcome']
+    goodbyeChannel = functions.json_module.get_config('Channels')['Goodbye']
+    commands = functions.json_module.get_config('Commands')
+except Exception as e:
+    print(functions.console.error('Error while trying to get data from the config file.\n' + str(e)))
 
 #Setup
 logging.basicConfig(filename='log.txt', level=logging.INFO)
 intents = discord.Intents.all()
+
+#Create commands
+try:
+    if functions.json_module.get_config('Created', 'commands.json') == 0:
+        commands.run()
+except Exception as e:
+    print(functions.console.error('Error while trying to create the commands.\n' + str(e)))
 
 #Main
 class Bot(discord.Client):
@@ -65,6 +75,7 @@ class Bot(discord.Client):
     async def on_ready(self):
         logging.info(str(datetime.datetime.now()) + ' Bot logged in as ' + client.user.name + '.')
         print(functions.console.info('Bot logged in as ' + client.user.name + '.'))
+        print('Guilds: ' + str(client.user.guilds))
         print('')
         print('Log (Consolebased)')
         print('------------------')
@@ -79,7 +90,7 @@ class Bot(discord.Client):
                 await asyncio.sleep(10)
         
     async def on_resumed(self):
-        logging.info(str(datetime.datetime.now().strftime('%d.%m.%Y %T')) + ' -- Bot resumed seesion.')
+        logging.info(str(datetime.datetime.now().strftime('%d.%m.%Y %T')) + ' -- Bot resumed session.')
         print(functions.console.log('Bot resumed a session.'))
 
     async def on_interaction(self, interaction):
@@ -260,5 +271,8 @@ class Bot(discord.Client):
         await error('Bot disconected from discord.')
 
 #Run
-client = Bot(intents = intents, max_messages=None)
-client.run(token, log_handler=None)
+try:
+    client = Bot(intents = intents, max_messages=None)
+    client.run(token, log_handler=None)
+except Exception as e:
+    print(functions.console.error('Error while trying to connect to discord.\n' + str(e)))
