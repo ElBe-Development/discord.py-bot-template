@@ -1,0 +1,21 @@
+{
+    "Config": {
+        "Version": "0.1.9.2 final-r",
+        "Version-Comment": "Bugfix and error handler.",
+        "Footer": "Bot made by ElBe.",
+        "Credits": true
+    },
+    "Channels": {
+        "Welcome": "<Insert welcome channel name here>",
+        "Goodbye": "<Insert goodbye channel name here>"
+    },
+    "Commands": {
+        "stop": true,
+        "help": true,
+        "info": true,
+        "ping": true,
+        "kick": true,
+        "ban": true,
+        "unban": true
+    }
+}
