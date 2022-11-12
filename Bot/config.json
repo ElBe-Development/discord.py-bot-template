@@ -1,13 +1,18 @@
 {
     "Config": {
-        "Version": "1.9.2 final-r",
-        "Version-Comment": "Bugfix and error handler.",
-        "Footer": "Bot made by ElBe.",
+        "Token": "<INSERT TOKEN HERE>",
+        "Application ID": "<INSERT APPLICATION ID HERE>",
+        "Version": "1.9.3 final",
+        "Version-Comment": "Added error handling.",
+        "Footer": "Made by ElBe.",
         "Credits": true
     },
     "Channels": {
-        "Welcome": "<Insert welcome channel name here>",
-        "Goodbye": "<Insert goodbye channel name here>"
+        "Welcome": "",
+        "Goodbye": ""
+    },
+    "Roles": {
+        "Member": "member"
     },
     "Commands": {
         "stop": true,

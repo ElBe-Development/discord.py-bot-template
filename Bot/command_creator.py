@@ -2,17 +2,17 @@
 Slash command creator for the discord.py Bot.
 © by ElBe.
 
-Version: 0.1.5
+Version: 1.4
 '''
 
 #Imports
-import os
 import requests
+import functions
 
 #Variables
-url = 'https://discord.com/api/v10/applications/' + str(os.environ['application_id']) + '/commands'
+url = 'https://discord.com/api/v10/applications/' + str(functions.json_module.get_config('Config')['Application ID']) + '/commands'
 headers = {
-    'Authorization': 'Bot ' + str(os.environ['token'])
+    'Authorization': 'Bot ' + str(functions.json_module.get_config('Config')['Token'])
 }
 
 #Example Command
@@ -26,6 +26,5 @@ json = {
 def create_command(json):
     try:
         r = requests.post(url, headers=headers, json=json)
-        print('Command /' + str(json['name']) + ' was sucessfully created.')
     except Exception as e:
         print('Error while trying to create the command /' + str(json['name']) + '.\n' + str(e))
