@@ -9,7 +9,8 @@ This is a discord.py bot template.
 
 You should already have the discord bot on your server. It needs administrator and command permissions.
 
-## Replit
+## Replit (OUTDATED)
+### :warning: The Replit port is outdated and won't be updated until further notice.
 1. Download the code from the releases tab and upload it to replit.
 2. Fill out the `config.json` file and add the `token` and `appliction_id` secret.
 3. Execute the `main.py` file.
