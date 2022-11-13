@@ -14,3 +14,7 @@ You should already have the discord bot on your server. It needs administrator a
 1. Download the code from the releases tab and upload it to replit.
 2. Fill out the `config.json` file and add the `token` and `appliction_id` secret.
 3. Execute the `main.py` file.
+
+# Support server
+[disboard.org](https://disboard.org/server/1041044933290770563) /
+[top.gg](https://top.gg/servers/1041044933290770563)
