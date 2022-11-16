@@ -3,7 +3,7 @@ Command creator for the discord.py Bot.
 
 © by ElBe.
 
-Version: 0.1.5
+Version: 1.5
 
 NOTE: Only execute once.
 '''

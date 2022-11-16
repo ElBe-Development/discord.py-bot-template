@@ -2,7 +2,7 @@
 Functions for the discord.py Bot.
 © by ElBe.
 
-Version: 1.2
+Version: 0.1.1
 '''
 
 #Imports
@@ -11,10 +11,6 @@ import os
 import colorama
 import datetime
 import re
-import requests
-
-#Bot modules
-import errors
 
 class variables():
     '''All variables used in this module.'''
@@ -108,11 +104,3 @@ class console():
     def erase_last():
         '''Erases the last line.'''
         print('\x1b[1A' + '\x1b[2K' + '\x1b[1A')
-
-class outdated():
-    def __init__(package: str, min_version: str):
-        min_version_int = int(min_version.replace('.',''))
-        try:
-            latest_version = int(str(json.loads(requests.get('https://pypi.python.org/pypi/' + package + '/json').text)['info']['version']).replace('.', ''))
-        except Exception as e:
-            print(console.error('Package not found.'))

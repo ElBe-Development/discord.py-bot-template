@@ -2,7 +2,7 @@
 Discord bot template.
 © by ElBe.
 
-Version: 0.1.9
+Version: 1.9
 '''
 
 #Imports
@@ -14,10 +14,18 @@ import time
 import logging
 import platform
 import psutil
+import requests
 
 #Bot modules
 import functions
-import commands
+import errors
+import commands as create_commands
+import version as bot_version
+
+#Check modules and python
+if not int(platform.python_version().replace('.','')) <= 3110:
+    errors.OutdatedVersionError('Python', '3.11.0 or higher', 'https://python.org')
+
 #Start
 print('Discord.py Bot')
 print('----------------------------')
@@ -26,7 +34,7 @@ print('')
 print('Start Informations')
 print('------------------')
 print('Discord version: ' + discord.__version__)
-print('Bot version:     ' + functions.json_module.get_config('Config')['Version'])
+print('Bot version:     ' + bot_version.version)
 print('')
 print('Starting')
 print('--------')
@@ -44,14 +52,16 @@ starttime = time.time()
 #JSON data
 try:
     token = functions.json_module.get_config('Config')['Token']
-    version = functions.json_module.get_config('Config')['Version']
+    version = bot_version.version
     credits = functions.json_module.get_config('Config')['Credits']
     footer = functions.json_module.get_config('Config')['Footer']
+    memberRole = functions.json_module.get_config('Roles')['Member']
     welcomeChannel = functions.json_module.get_config('Channels')['Welcome']
     goodbyeChannel = functions.json_module.get_config('Channels')['Goodbye']
     commands = functions.json_module.get_config('Commands')
 except Exception as e:
     print(functions.console.error('Error while trying to get data from the config file.\n' + str(e)))
+    exit()
 
 #Setup
 logging.basicConfig(filename='log.txt', level=logging.INFO)
@@ -60,9 +70,12 @@ intents = discord.Intents.all()
 #Create commands
 try:
     if functions.json_module.get_config('Created', 'commands.json') == 0:
-        commands.run()
+        create_commands
+    else:
+        None
 except Exception as e:
     print(functions.console.error('Error while trying to create the commands.\n' + str(e)))
+    exit()
 
 #Main
 class Bot(discord.Client):
@@ -234,33 +247,37 @@ class Bot(discord.Client):
                 await interaction.response.send_message(embed=commandDisabledEmbed, ephemeral=True)     
 
     async def on_member_join(self, member):
-        async def log(text: str):
-            '''Log a text and save it in the logfile and the console.'''
-            logging.info(str(datetime.datetime.now().strftime('%d.%m.%Y %T')) + ' -- ' + str(text))
-            print(functions.console.log(str(text)))
+        if not welcomeChannel == "":
+            async def log(text: str):
+                '''Log a text and save it in the logfile and the console.'''
+                logging.info(str(datetime.datetime.now().strftime('%d.%m.%Y %T')) + ' -- ' + str(text))
+                print(functions.console.log(str(text)))
 
-        if not member == client.user:
-            channel = discord.utils.get(member.guild.text_channels, name=welcomeChannel)
-            joinEmbed = discord.Embed(title='Welcome!', description='Hello  <@!' + str(member.id) + f'>! \nThank you for joining {member.guild.name}!')
-            joinEmbed.set_thumbnail(url=member.avatar.url)
-            joinEmbed.set_footer(text=footer)
-            await channel.send(embed=joinEmbed)
-            await member.add_roles(discord.utils.get(member.guild.roles, name='member'))
-            await log('@' + str(member) + ' joined to ' + str(member.guild.name) + '.')
+            if not welcomeChannel == '':
+                if not member == client.user:
+                    channel = discord.utils.get(member.guild.text_channels, name=welcomeChannel)
+                    joinEmbed = discord.Embed(title='Welcome!', description='Hello  <@!' + str(member.id) + f'>! \nThank you for joining {member.guild.name}!')
+                    joinEmbed.set_thumbnail(url=member.avatar.url)
+                    joinEmbed.set_footer(text=footer)
+                    await channel.send(embed=joinEmbed)
+                    await member.add_roles(discord.utils.get(member.guild.roles, name=str(member)))
+                    await log('@' + str(member) + ' joined to ' + str(member.guild.name) + '.')
 
     async def on_member_remove(self, member):
-        async def log(text: str):
-            '''Log a text and save it in the logfile and the console.'''
-            logging.info(str(datetime.datetime.now().strftime('%d.%m.%Y %T')) + ' -- ' + str(text))
-            print(functions.console.log(str(text)))
+        if not goodbyeChannel == "":
+            async def log(text: str):
+                '''Log a text and save it in the logfile and the console.'''
+                logging.info(str(datetime.datetime.now().strftime('%d.%m.%Y %T')) + ' -- ' + str(text))
+                print(functions.console.log(str(text)))
 
-        if not member == client.user:
-            channel = discord.utils.get(member.guild.text_channels, name=goodbyeChannel)
-            leaveEmbed = discord.Embed(title='Goodbye!', description='<@!' + str(member.id) + f'> left {member.guild.name}.')
-            leaveEmbed.set_thumbnail(url=member.avatar.url)
-            leaveEmbed.set_footer(text=footer)
-            await channel.send(embed=leaveEmbed)
-            await log('@' + str(member) + ' left ' + str(member.guild.name) + '.')
+            if not goodbyeChannel == '':
+                if not member == client.user:
+                    channel = discord.utils.get(member.guild.text_channels, name=goodbyeChannel)
+                    leaveEmbed = discord.Embed(title='Goodbye!', description='<@!' + str(member.id) + f'> left {member.guild.name}.')
+                    leaveEmbed.set_thumbnail(url=member.avatar.url)
+                    leaveEmbed.set_footer(text=footer)
+                    await channel.send(embed=leaveEmbed)
+                    await log('@' + str(member) + ' left ' + str(member.guild.name) + '.')
 
     async def on_disconnect(self):
         async def error(text: str):
@@ -271,8 +288,12 @@ class Bot(discord.Client):
         await error('Bot disconected from discord.')
 
 #Run
-try:
-    client = Bot(intents = intents, max_messages=None)
-    client.run(token, log_handler=None)
-except Exception as e:
-    print(functions.console.error('Error while trying to connect to discord.\n' + str(e)))
+client = Bot(intents = intents, max_messages=None)
+new_version = str(str(str(requests.get('https://raw.githubusercontent.com/ElBe-Plaq/discord.py-bot-template/main/version.py').text).replace('version = ', '')).replace('\n', '')).replace('\'', '')
+if version == new_version:
+    try:
+        client.run(token, log_handler=None)
+    except discord.errors.DiscordException:
+        errors.APIError('Error while trying to connect to discord.')
+else:
+    errors.OutdatedVersionError('the template', new_version, 'https://github.com/ElBe-Plaq/discord.py-bot-template')
