@@ -1,7 +1,6 @@
 '''
 Functions for the discord.py Bot.
 © by ElBe.
-
 Version: 1.2
 '''
 
@@ -11,7 +10,6 @@ import os
 import colorama
 import datetime
 import re
-import requests
 
 #Bot modules
 import errors
@@ -24,17 +22,23 @@ class variables():
 class json_module():
     def get_config(name: str, file = variables.standart_config_file):
         '''Returns a value from the given/standart JSON file.'''
-        with open(file, 'r') as f:
-            return json.load(f)[name]
+        try:
+            with open(file, 'r') as f:
+                return json.load(f)[name]
+        except Exception as e:
+            errors.DataLoadingError(e.__cause__)
 
     def write_json(data, show_text = False, file = variables.standart_config_file):
         '''Writes the text to the given/standart JSON file.'''
-        with open(file, 'w') as f:
-            json.dump(data, f)
-            f.close()
+        try:
+            with open(file, 'w') as f:
+                json.dump(data, f)
+                f.close()
 
-            if show_text:
-                print(console.log('Data ' + str(data) + ' added to ' + str(file) + '.'))
+                if show_text:
+                    print(console.log('Data ' + str(data) + ' added to ' + str(file) + '.'))
+        except Exception as e:
+            errors.DataWritingError(e.__cause__)
 
 class console():
     def info(text: str):
@@ -109,10 +113,21 @@ class console():
         '''Erases the last line.'''
         print('\x1b[1A' + '\x1b[2K' + '\x1b[1A')
 
-class outdated():
-    def __init__(package: str, min_version: str):
-        min_version_int = int(min_version.replace('.',''))
-        try:
-            latest_version = int(str(json.loads(requests.get('https://pypi.python.org/pypi/' + package + '/json').text)['info']['version']).replace('.', ''))
-        except Exception as e:
-            print(console.error('Package not found.'))
+class translate_text():
+    def __init__(category: str, text: str):
+        language = str(json_module.get_config('Config')['Language'])
+        if category == 'B':
+            return json_module.get_config('Bot', 'data/lang/' + language + '/bot.json')[text]
+        elif category == 'C':
+            return json_module.get_config('Commands', 'data/lang/' + language + '/commands.json')[text]
+        elif category == 'CC':
+            return json_module.get_config('Command creator', 'data/lang/' + language + '/command_creator.json')[text]
+        elif category == 'E':
+            return json_module.get_config('Error', 'data/lang/' + language + '/errors.json')[text]
+        elif category == 'F':
+            return json_module.get_config('Functions', 'data/lang/' + language + '/functions.json')[text]
+        elif category == 'R':
+            with open(r'data/lang/' + json_module.get_config('Config')['Language'] + r'/rules.txt', 'r') as f:
+                return f.read()
+        else:
+            errors.UnexpectedValueError('B, C, CC, E, F, R', category)
