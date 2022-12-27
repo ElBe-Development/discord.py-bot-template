@@ -13,5 +13,4 @@ You should already have the discord bot on your server. It needs administrator a
 ### :warning: The Replit port is outdated and was removed for now.
 
 # Support server
-[disboard.org](https://disboard.org/server/1041044933290770563) /
-[top.gg](https://top.gg/servers/1041044933290770563)
+[Invite](https://discord.gg/JVyyDukQqV)
