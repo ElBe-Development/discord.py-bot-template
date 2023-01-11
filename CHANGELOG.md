@@ -22,3 +22,6 @@ More in progress
 ## v1.9.1
 - Added feature manager ([#4](https://github.com/ElBe-Development/discord.py-bot-template/issues/4))
 - Added stop command to command creator
+
+## Before
+Created the bot and added help, info, ping, stop, kick, ban and unban commands.
