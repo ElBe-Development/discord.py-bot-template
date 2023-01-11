@@ -5,6 +5,8 @@ There may be issues/added features that aren't listed here. Some fixed issues/ad
 - Bugfixes
 - Removed replit port, due to it being outdated ([#19](https://github.com/ElBe-Development/discord.py-bot-template/issues/19))
 - Added `/clear` command ([#20](https://github.com/ElBe-Development/discord.py-bot-template/issues/20))
+- Added cog system ([#24](https://github.com/ElBe-Development/discord.py-bot-template/issues/24), WIP)
+
 More in progress
 
 ## v1.9.3
