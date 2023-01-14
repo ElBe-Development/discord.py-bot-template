@@ -1,5 +1,5 @@
 @echo off
 pip install -r requirements.txt
-cls
+clear
 cd Bot
 python bot.py
