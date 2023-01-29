@@ -1,6 +1,8 @@
 # Discord Bot
 This is a discord.py bot template.
 
+Please only use a version from the releases tab instead of downloading the repository to prevent errors.
+
 ## How to use the template
 1. Download the code from the releases tab.
 2. Fill out the `config.json` file.
