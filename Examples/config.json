@@ -1,0 +1,26 @@
+{
+    "Config": {
+        "Token": "MYDISCORDBOT",
+        "Application ID": "1234567890",
+        "Version": "1.9.3 final",
+        "Version-Comment": "That happend.",
+        "Footer": "Made by ElBe.",
+        "Credits": true
+    },
+    "Channels": {
+        "Welcome": "welcome-and-goodbye",
+        "Goodbye": "welcome-and-goodbye"
+    },
+    "Roles": {
+        "Member": "member"
+    },
+    "Commands": {
+        "stop": true,
+        "help": true,
+        "info": true,
+        "ping": true,
+        "kick": true,
+        "ban": true,
+        "unban": true
+    }
+}
