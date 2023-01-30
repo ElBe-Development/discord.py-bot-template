@@ -2,7 +2,7 @@
 name: Enhancement
 about: Suggest an enhancement for this project
 title: "[ENHANCEMENT] Title"
-labels: Bot, enhancement, V2
+labels: Bot, enhancement
 assignees: ElBe-Plaq
 
 ---
