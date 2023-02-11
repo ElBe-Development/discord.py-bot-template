@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Discord Support Server
+    url: https://discord.gg/JVyyDukQqV
+    about: Ask questions and find help here.
+  - name: Security reports
+    url: https://github.com/ElBe-Development/discord.py-bot-template/security/advisories/new
+    about: Please report security vulnerabilities here.
+  - name: E-Mail
+    url: mailto:elbe.dev.plaq@gmail.com
+    about: (!) I do not check this email often, so please be aware of long response wait times.
