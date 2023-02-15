@@ -1,0 +1,17 @@
+name-template: v$NEXT_PATCH_VERSION
+tag-template: v$NEXT_PATCH_VERSION
+categories:
+  - title: Added
+    label: addition
+  - title: Changed
+    label: change
+  - title: 🧰 Maintenance
+    label: chore
+ tag-template: - $TITLE (#$NUMBER) @$AUTHOR
+template: |
+  ## Changes
+
+  $CHANGES
+  
+  ## Authors
+  $CONTRIBUTORS
