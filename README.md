@@ -1,4 +1,4 @@
-### :warning: The `main` branch is currently not ready for production or usage. There will be major changes regarding the bot and the repository with the release of `v1.9.4`.
+### :warning: The `main` branch is currently not ready for production or usage. There will be major changes regarding the bot and the repository with the release of `v1.0.0`. The version before `v1.0.0` have old names and code and will be incompactible with newer ones. Please update to `v1.0.0` with it's release.
 # Discord.py bot template
 This is a discord.py bot template.
 
