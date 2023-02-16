@@ -2,11 +2,17 @@ name-template: v$NEXT_PATCH_VERSION
 tag-template: v$NEXT_PATCH_VERSION
 categories:
   - title: Added
-    label: addition
+    label: enhancement
   - title: Changed
     label: change
-  - title: 🧰 Maintenance
-    label: chore
+  - title: Deprecated
+    label: deprecated
+  - title: Removed
+    label: removed
+  - title: Fixed
+    label: bug
+  - title: Security
+    label: security
  tag-template: - $TITLE (#$NUMBER) @$AUTHOR
 template: |
   ## Changes
