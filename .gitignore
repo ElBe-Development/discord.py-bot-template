@@ -129,5 +129,11 @@ dmypy.json
 .pyre/
 
 #Custom
-__pycache__/
-.github/
+**.log
+**.db
+**.json #Must be done by hand
+
+#Tests (not the code tests)
+Bot/test.py
+Bot/test2.py
+Bot/test3.py
