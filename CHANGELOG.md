@@ -18,6 +18,11 @@ Versions before `v1.0.0` still use old version names and changelog.
 - Switched to `commands V2` system ([#46](https://github.com/ElBe-Development/discord.py-bot-template/issues/46))
 
 ## `v.1.0.0 alpha17` (Private)
+### Added
+- Added anti profanity system
+
+## Changed
+- Changed version system to use the version specified in the `config.json` file ([#46](https://github.com/ElBe-Development/discord.py-bot-template/issues/46))
 
 ## `v1.0.0 alpha16` (Private)
 ### Deprecated
