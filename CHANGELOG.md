@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-Versions before `v1.0.0` still use old version names and changelog.
+Versions before `v1.0.0 alpha16` may still use old version names and changelog.
 
 ## Unreleased
 ### `v1.0.0`
@@ -17,6 +17,9 @@ Versions before `v1.0.0` still use old version names and changelog.
 - Changed `token` variable to be real constant by removing it ([#46](https://github.com/ElBe-Development/discord.py-bot-template/issues/46))
 - Switched to `commands V2` system ([#46](https://github.com/ElBe-Development/discord.py-bot-template/issues/46))
 
+## `v.1.0.0 alpha18` (Private)
+### Added 
+
 ## `v.1.0.0 alpha17` (Private)
 ### Added
 - Added anti profanity system
@@ -27,6 +30,9 @@ Versions before `v1.0.0` still use old version names and changelog.
 ## `v1.0.0 alpha16` (Private)
 ### Deprecated
 - Functions are deprecated now and will be put into its own `utils` folder ([#46](https://github.com/ElBe-Development/discord.py-bot-template/issues/46))
+
+## < `v1.0.0 alpha16` > `v0.9.3` (Private)
+Many rewrites.
 
 ## [`v0.9.3`](https://github.com/ElBe-Development/discord.py-bot-template/releases/tag/v1.9.3-final)
 - Bugfixes
