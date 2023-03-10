@@ -28,7 +28,7 @@ jobs:
     - name: Test
       run: |
         ls
-        where
+        which
     - name: Lint with pylint
       run: |
         pip install pylint_runner
