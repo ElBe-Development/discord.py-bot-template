@@ -28,7 +28,5 @@ jobs:
     - name: Lint with pylint
       run: |
         pip install pylint_runner
-        pylint_runner --exit-zero --generate-rcfile
-        ls
         pylint_runner --rcfile=.pylintrc
   #Test with pytest
