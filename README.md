@@ -1,10 +1,11 @@
 # Discord.py bot template
 
 [![Discord](https://discord.com/api/guilds/1041044933290770563/embed.png)](https://discord.gg/JVyyDukQqV)
-VERSION
-PY_VERSION
+[![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/ElBe-Development/discord.py-bot-template?include_prereleases)](https://github.com/ElBe-Development/discord.py-bot-template/releases)
+![Supported python versions](https://img.shields.io/badge/python-3.11-blue)
+![GitHub](https://img.shields.io/github/license/ElBe-Development/discord.py-bot-template)
 ![GitHub all releases](https://img.shields.io/github/downloads/ElBe-Development/discord.py-bot-template/total)
-AUTHORS
+![GitHub issues](https://img.shields.io/github/issues/ElBe-Development/discord.py-bot-template)
 ![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/ElBe-Development/discord.py-bot-template)
 [![linting: pylint](https://img.shields.io/badge/linting-pylint-yellowgreen)](https://github.com/PyCQA/pylint)
 [![security: bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
