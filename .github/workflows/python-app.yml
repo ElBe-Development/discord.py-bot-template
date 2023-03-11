@@ -29,5 +29,6 @@ jobs:
       run: |
         pip install pylint_runner
         pylint_runner --exit-zero --generate-rcfile
-        pylint_runner
+        ls
+        pylint_runner --rcfile=.pylintrc
   #Test with pytest
