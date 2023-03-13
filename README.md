@@ -1,3 +1,5 @@
+### :warning: The `main` branch is currently not ready for production or usage. There will be major changes regarding the bot and the repository with the release of `v1.0.0`. The version before `v1.0.0` have old names and code and will be incompactible with newer ones. Please update to `v1.0.0` with it's release.
+
 # Discord.py bot template
 
 [![Discord](https://discord.com/api/guilds/1041044933290770563/embed.png)](https://discord.gg/JVyyDukQqV)
