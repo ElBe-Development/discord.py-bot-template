@@ -17,6 +17,10 @@ Versions before `v1.0.0 alpha16` may still use old version names and changelog.
 - Changed `token` variable to be real constant by removing it ([#46](https://github.com/ElBe-Development/discord.py-bot-template/issues/46))
 - Switched to `commands V2` system ([#46](https://github.com/ElBe-Development/discord.py-bot-template/issues/46))
 
+## `v.1.0.0-aplha19` (Private)
+### Changed
+- Changed default logging level system ([#39](https://github.com/ElBe-Development/discord.py-bot-template/issues/39))
+
 ## `v.1.0.0 alpha18` (Private)
 ### Added
 - Added optional `level` value (defualts to `variables.standard_logging_level`) to logger objects to only show messages above or equal to that level
