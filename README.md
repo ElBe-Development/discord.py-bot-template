@@ -1,5 +1,5 @@
 <center>
-    <h1>This repository will be archive for now, as I will focus on the I programming language.</h1>
+    <h1>🎉 The repository is unarchived. Work will be done on the v1 branch.</h1>
 </center>
 
 
